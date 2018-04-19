@@ -1,35 +1,14 @@
 # Message Handlers
 
-## HttpRequestMessage
+## HttpMessageHandler
+AbstractClass
 
-- Properties
-  - Content
-  - Headers
-  - Method
-  - Properties
-  - RequestUri
-  - Version
-- Methods
-  - Dispose (+1 overload)
-  - HttpRequestMessage (+2)
-  - ToString()
+Receives an HTTP request, and returns an HTTP response.
 
-
-## HttpResponseMessage
-
-- Properties
-  - Content
-  - Headers
-  - IsSuccesfulStatusCode
-  - ReasonPhrase
-  - RequestMessage
-  - StatusCode
-  - Version
 - Methods
   - Dispose
-  - EnsureSuccessStatusCode
-  - HttpResponseMessage()
-  - ToString()
+  - HttpMessageHandler
+  - SendAsync
 
 
 ## DelegatingHandler
@@ -44,15 +23,22 @@ An intermediary handler that knows how to pass of request and messages from one 
   - Dispose
   - SendAsync()
 
-## HttpMessageHandler
-AbstractClass
 
-Receives an HTTP request, and returns an HTTP response.
 
-- Methods
-  - Dispose
-  - HttpMessageHandler
-  - SendAsync
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```graphviz
 digraph finite_state_machine {
