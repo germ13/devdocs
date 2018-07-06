@@ -1,4 +1,4 @@
-# Server side message handlers.
+# Server side message handlers
 
 - `HttpServer`: receives request from host.
 - `HttpRoutingDispatcher`: dispatches request based on route.
