@@ -1,0 +1,36 @@
+* NET Core Middleware.
+
+Pipeline gets configured in the `Startup.cs` file, in the `Configure` method.
+
+#+BEGIN_SRC csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory, IdentityDbContext dbContext)
+{
+app.UseDeveloperExceptionPage();
+app.UseStaticFilex();
+app.UseMvcWithDefaultRoute();
+}
+#+END_SRC
+
+These run in the order defined.  The `UseDeveloperExceptionPage` handles exceptions raised in the middleware below it.
+
+There is also an extension method in `IApplicationBuilder` that lets us write our middleware inline in the `Config` method.
+
+#+BEGIN_SRC csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory, IdentityDbContext dbContext)
+{
+app.Use(async (HttpContext context, Func<Task> next) =>
+{
+// 1. do work before invoking the rest of the pipeline.
+
+await next.Invoke(); // 2. let the rest of the pipeline run.
+
+// 3. do work after the rest of the pipeline has run.
+}
+
+#+END_SRC
+
+
+The middleware requires a method with a specific signature. It requires a constructor with atleast one parameter type of `RequestDelegate`.  A request delegate is just the definition of a function signature:
+
+`public delegate Task RequestDelegate(HttpContext context);`
+

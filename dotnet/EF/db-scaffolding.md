@@ -1,4 +1,23 @@
-## Scaffolding DB Context
+# Scaffold-DbContext
+
+Scaffolds a DbContext and entity types for a database.
+
+```    
+SYNTAX
+    Scaffold-DbContext
+      [-Connection] <String>
+      [-Provider] <String>
+      [-OutputDir <String>]
+      [-Context <String>]
+      [-Schemas <String[]>]
+      [-Tables <String[]>]
+      [-DataAnnotations]
+      [-Force]
+      [-Environment <String>]
+      [-Project <String>]
+      [-StartupProject <String>]
+      [<CommonParameters>]
+```
 
 ## Filtering Tables
 It is possible to specify the exact tables in a schema to use when scaffolding database and to omit the rest. The command-line examples that follow show the parameters needed for filtering tables.
@@ -37,3 +56,7 @@ The following command-line examples show how to incorporate the sakila and world
 
 ## Output directory
 `Scaffold-DbContext "server=localhost;port=3306;user=root;password=mypass;database=sakila" MySql.Data.EntityFrameworkCore -OutputDir sakila -f`
+
+## Sources
+- https://docs.oracle.com/cd/E17952_01/connector-net-en/connector-net-entityframework-core-scaffold-example.html
+- https://www.learnentityframeworkcore.com/walkthroughs/existing-database

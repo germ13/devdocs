@@ -1,0 +1,7 @@
+* NET Core Middleware.
+
+Pipeline gets configured in the `Startup.cs` file, in the `Configure` method.
+
+#+BEGIN_SRC csharp
+public void 
+#+END_SRC
