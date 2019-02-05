@@ -1,13 +1,15 @@
 * NET Core Middleware.
 
+Notes derived from: [[https://www.blinkingcaret.com/2017/09/13/create-your-own-asp-net-core-middleware/][Notes derived from]]
+
 Pipeline gets configured in the `Startup.cs` file, in the `Configure` method.
 
-#+BEGIN_SRC csharp
+#+BEGIN_SRC python
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory, IdentityDbContext dbContext)
 {
-app.UseDeveloperExceptionPage();
-app.UseStaticFilex();
-app.UseMvcWithDefaultRoute();
+  app.UseDeveloperExceptionPage();
+  app.UseStaticFilex();
+  app.UseMvcWithDefaultRoute();
 }
 #+END_SRC
 
@@ -15,22 +17,104 @@ These run in the order defined.  The `UseDeveloperExceptionPage` handles excepti
 
 There is also an extension method in `IApplicationBuilder` that lets us write our middleware inline in the `Config` method.
 
-#+BEGIN_SRC csharp
+#+BEGIN_SRC javascript
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory, IdentityDbContext dbContext)
 {
-app.Use(async (HttpContext context, Func<Task> next) =>
-{
-// 1. do work before invoking the rest of the pipeline.
-
-await next.Invoke(); // 2. let the rest of the pipeline run.
-
-// 3. do work after the rest of the pipeline has run.
+  app.Use(async (HttpContext context, Func<Task> next) =>
+  {
+    // 1. do work before invoking the rest of the pipeline.
+    await next.Invoke(); // 2. let the rest of the pipeline run.
+    // 3. do work after the rest of the pipeline has run.
+  }
 }
-
 #+END_SRC
-
 
 The middleware requires a method with a specific signature. It requires a constructor with atleast one parameter type of `RequestDelegate`.  A request delegate is just the definition of a function signature:
 
 `public delegate Task RequestDelegate(HttpContext context);`
 
+It requires a constructor with atleast one parameter of type `RequestDelegate` (above).
+It receives an `HttpContext` and returns a `Task`.
+
+This is what executes in the pipeline.
+
+You can pass options to the middleware, this can be done in the constructor as a second parameter of type `IOptions<YourOptionsType>`.  
+
+Eg.
+#+BEGIN_SRC csharp
+public class MyFileLoggerMiddleware
+{
+  private readonly RequestDelegate _next;
+  private readonly MyFileLoggerOptions _options;
+
+  public MyFileLoggerMiddleware(RequestDelegate next, IOptions<MyFileLogger> options)
+  { 
+    _next = next;
+    _options = options;
+  }
+}
+#+END_SRC
+
+Next comes the method that gets called when the middleware is executed:
+#+BEGIN_SRC csharp
+public asyan Task Invoke(HttpContext context){
+  var request = context.Request;
+  var message = context.Method;
+  var path = request.Path.Value;
+  var query = request.QueryString;
+  var requestLogMessage = request.Host;
+  
+  File.AppendAllText(_options.FileName, $"{DateTime.Now.ToString("s")}\{message}");
+
+  await _next(context);
+
+  var response = context.Response;
+  var responseLogMessage = $"\nRESPONSE:\nStatus Code: {response.StatusCode}";
+        File.AppendAllText(_options.FileName, $"{responseLogMessage}\n\n");
+}
+#+END_SRC
+
+** Defining a custom .UseMyMiddleware extension method
+If you want to stop here you can already use the middleware, just go to your Configure method in Startup.cs and add the middleware to the pipeline by doing this:
+
+#+BEGIN_SRC 
+
+app.UseMiddleware<MyFileLoggerMiddleware>(Options.Create(new MyFileLoggerOptions{
+    FileName = Path.Combine(env.ContentRootPath, "logFile.txt") 
+}));
+#+END_SRC
+
+The only thing to be aware here is that you have to use Options.Create and pass in an instance of the options class.
+
+However to be able to just do app.UseMyFileLogger we need to create an extension method targeting IApplicationBuilder, here’s how we can do that:
+
+
+#+BEGIN_SRC 
+
+public static class MyFileLoggerMiddlewareExtensions
+{
+    public static IApplicationBuilder UseMyFileLogger(this IApplicationBuilder app, MyFileLoggerOptions options)
+    {
+        return app.UseMiddleware<MyFileLoggerMiddleware>(Options.Create(options));
+    }
+}
+#+END_SRC
+
+To use it in the Configure method in Startup.cs you can now simply do:
+
+#+BEGIN_SRC 
+
+ app.UseMyFileLogger(new MyFileLoggerOptions {
+    FileName = Path.Combine(env.ContentRootPath, "log.txt") 
+});
+#+END_SRC
+
+** Extras
+
+All middleware has access to an instance of `HttpContext`.  It is via here that they can send messages to each other.
+
+** Authentication Middleware
+
+[[https://www.blinkingcaret.com/2017/05/03/external-login-providers-in-asp-net-core/][External Login Providers]]
+
+Inherits from `AuthenticationMiddleware`.  This creates an `AuthenticationHandler`.  In this handler is where most of the functionality lies.
