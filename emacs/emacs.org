@@ -1,0 +1,11 @@
+* Emacs
+
+** Variables
+load-path - where emacs looks for .el files.
+
+** Help
+C-h v <variable> - Look at variable
+
+** Execute
+
+C-x C-e - eval-last-sexp
