@@ -1,3 +1,4 @@
+#+HIDE_STARS 
 * NET Core Middleware.
 
 Notes derived from: [[https://www.blinkingcaret.com/2017/09/13/create-your-own-asp-net-core-middleware/][Notes derived from]]
@@ -118,3 +119,4 @@ All middleware has access to an instance of `HttpContext`.  It is via here that 
 [[https://www.blinkingcaret.com/2017/05/03/external-login-providers-in-asp-net-core/][External Login Providers]]
 
 Inherits from `AuthenticationMiddleware`.  This creates an `AuthenticationHandler`.  In this handler is where most of the functionality lies.
+call different spot
