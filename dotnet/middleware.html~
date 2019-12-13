@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>middleware</title>
+<!-- 2019-02-05 Tue 08:25 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">middleware</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. NET Core Middleware.</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Defining a custom .UseMyMiddleware extension method</a></li>
+<li><a href="#sec-1-2">1.2. Extras</a></li>
+<li><a href="#sec-1-3">1.3. Authentication Middleware</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> NET Core Middleware.</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Pipeline gets configured in the `Startup.cs` file, in the `Configure` method.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory, IdentityDbContext dbContext)
+{
+  app.UseDeveloperExceptionPage();
+  app.UseStaticFilex();
+  app.UseMvcWithDefaultRoute();
+}
+</pre>
+</div>
+
+<p>
+These run in the order defined.  The `UseDeveloperExceptionPage` handles exceptions raised in the middleware below it.
+</p>
+
+<p>
+There is also an extension method in `IApplicationBuilder` that lets us write our middleware inline in the `Config` method.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory, IdentityDbContext dbContext)
+{
+  app.Use(async (HttpContext context, Func&lt;Task&gt; next) =&gt;
+  {
+    // 1. do work before invoking the rest of the pipeline.
+    await next.Invoke(); // 2. let the rest of the pipeline run.
+    // 3. do work after the rest of the pipeline has run.
+  }
+}
+</pre>
+</div>
+
+<p>
+The middleware requires a method with a specific signature. It requires a constructor with atleast one parameter type of `RequestDelegate`.  A request delegate is just the definition of a function signature:
+</p>
+
+<p>
+`public delegate Task RequestDelegate(HttpContext context);`
+</p>
+
+<p>
+It requires a constructor with atleast one parameter of type `RequestDelegate` (above).
+It receives an `HttpContext` and returns a `Task`.
+</p>
+
+<p>
+This is what executes in the pipeline.
+</p>
+
+<p>
+You can pass options to the middleware, this can be done in the constructor as a second parameter of type `IOptions&lt;YourOptionsType&gt;`.  
+</p>
+
+<p>
+Eg.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-csharp">public class MyFileLoggerMiddleware
+{
+  private readonly RequestDelegate _next;
+  private readonly MyFileLoggerOptions _options;
+
+  public MyFileLoggerMiddleware(RequestDelegate next, IOptions&lt;MyFileLogger&gt; options)
+  { 
+    _next = next;
+    _options = options;
+  }
+}
+</pre>
+</div>
+
+<p>
+Next comes the method that gets called when the middleware is executed:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-csharp">public asyan Task Invoke(HttpContext context){
+  var request = context.Request;
+  var message = context.Method;
+  var path = request.Path.Value;
+  var query = request.QueryString;
+  var requestLogMessage = request.Host;
+
+  File.AppendAllText(_options.FileName, $"{DateTime.Now.ToString("s")}\{message}");
+
+  await _next(context);
+
+  var response = context.Response;
+  var responseLogMessage = $"\nRESPONSE:\nStatus Code: {response.StatusCode}";
+	File.AppendAllText(_options.FileName, $"{responseLogMessage}\n\n");
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Defining a custom .UseMyMiddleware extension method</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+If you want to stop here you can already use the middleware, just go to your Configure method in Startup.cs and add the middleware to the pipeline by doing this:
+</p>
+
+<pre class="example">
+app.UseMiddleware&lt;MyFileLoggerMiddleware&gt;(Options.Create(new MyFileLoggerOptions{
+    FileName = Path.Combine(env.ContentRootPath, "logFile.txt") 
+}));
+</pre>
+
+<p>
+The only thing to be aware here is that you have to use Options.Create and pass in an instance of the options class.
+</p>
+
+<p>
+However to be able to just do app.UseMyFileLogger we need to create an extension method targeting IApplicationBuilder, here’s how we can do that:
+</p>
+
+
+<pre class="example">
+public static class MyFileLoggerMiddlewareExtensions
+{
+    public static IApplicationBuilder UseMyFileLogger(this IApplicationBuilder app, MyFileLoggerOptions options)
+    {
+        return app.UseMiddleware&lt;MyFileLoggerMiddleware&gt;(Options.Create(options));
+    }
+}
+</pre>
+
+<p>
+To use it in the Configure method in Startup.cs you can now simply do:
+</p>
+
+<pre class="example">
+ app.UseMyFileLogger(new MyFileLoggerOptions {
+    FileName = Path.Combine(env.ContentRootPath, "log.txt") 
+});
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Extras</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+All middleware has access to an instance of `HttpContext`.  It is via here that they can send messages to each other.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Authentication Middleware</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Inherits from `AuthenticationMiddleware`.  This creates an `AuthenticationHandler`.  In this handler is where most of the functionality lies.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2019-02-05 Tue 08:25</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

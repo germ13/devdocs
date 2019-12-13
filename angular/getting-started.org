@@ -1,0 +1,58 @@
+* Angular Gettting Started
+
+** Abstract
+Title: Angular - Getting Started
+Author: Deborah Kurata, @deborahkurata, http://blogs.msmvps.com/deborahk/
+Abstract: Learn the basics to build an Angular application.
+
+*** Reasons for Angular
+- Expressive HTML
+- Powerful data binding
+- Modular design
+- Built-in back-end integration
+
+*** Anatomy of an Angular application
+
+Application = Components + Services that add functionality accross those components
+
+Component = Template (HTML) + Class (Properties and methods) + Metadata
+          = View + Codebehing + Metadata
+
+Root angular module 
+  --> Component 
+     -- Component 
+        -- Component
+  <-- Feature Angular Module
+     -- Component 
+        -- Component
+
+*** Sample product management
+
+Acme product management
+
+** Components
+
+Components
+App Component
+  Welcome 
+  Product list
+    Star rating
+  Product Detail
+    Star rating (reuse)
+
+Product Data Service
+
+index.html
+
+** Templates, data binding and directives.
+
+** Services and Dependency Injection 
+
+** Http and observables
+
+** Navigation and routing
+
+** Angular CLI
+
+** Misc
+

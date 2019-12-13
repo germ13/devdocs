@@ -1,0 +1,10 @@
+* Effective logging in ASP.NET Core
+This is from the course _Effective Logging in ASP.NET Core_ from Pluralsight by 
+
+
+Topics
+- Mechanics of writing log entries
+- Global exception handling
+- Content we want to include
+- Getting entries written
+
