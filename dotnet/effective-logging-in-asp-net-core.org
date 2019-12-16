@@ -1,5 +1,5 @@
 * Effective logging in ASP.NET Core
-This is from the course _Effective Logging in ASP.NET Core_ from Pluralsight by 
+This is from the course _Effective Logging in ASP.NET Core_ from Pluralsight by Erik Dahl @dahlsailrunner.
 
 
 Topics
@@ -8,3 +8,147 @@ Topics
 - Content we want to include
 - Getting entries written
 
+* Logging in ASP.NET Core QuickStart
+- Good consistent information
+- Keep application code clean
+- Easily consumable
+- Improves "fixability"
+- Enables deeper understanding
+- Adds data for prioritization
+
+* What's "in the box"?
+- WebHost.CreateDefaultBuilder
+- ILogger interface and extension methods
+
+
+~WebHost.CreateDefaultBuilder(args)~ gets called
+
+~.ConfigureLogging((hostingContext, logging) => {~
+// gets called and looks for configuration from a configuration file
+~logging.AddConfiguration( hostingContext.Configuration.GetSection("Logging"));~
+// Then providers are added, for example
+~logging.AddConsole();~
+~logging.AddDebug();~
+~logging.AddEventSourceLogger();~
+
+** Different Extension Methods
+- Log.Information
+- Log.Fatal
+
+** Different levels of logging
+~appsettings.json~
+Logging
+  LogLevel
+    Default : "Warning"
+    Microsoft.AspNetCore : "Warning"
+
+* Serilog
+** Serilog nuget packages
+- Serilog.AspNetCore
+Provides serilog for app
+- Serilog.Settings.Configuration
+Allows configuration of serilog via settings file
+- Serilog.Sinks.File
+A place to output "sink" the log information to.
+
+** Program.cs >> Main(string args[])
+Add this to the method:
+~Log.Logger = new LoggerConfiguration()~
+  ~.ReadFrom.Configuration(Configuration)~
+  ~.WriteTo.File(new JsonFormatter(), "c:\temp\logs\app.json", shared: true)~
+  ~.CreateLogger();~
+
+
+In ~appsettings.json~ 
+"Serilog":{
+  "MininumLevel": {
+    "Default": "Debug",
+    "Override": {
+      "Microsoft": "Warning",
+      "System": "Warning",
+      "IdentityServer4": "Information"
+    }
+  }
+},
+
+** Add logging to other classes
+Add Microsoft.Extensions.Logging nuget package
+They can be correlated to other entries in the same http request via event ids
+
+* Log Levels
+- Levels
+- Categories and Event Ids
+- Filters
+- Scopes
+- High-Performance Situations
+
+
+*** Levels
+- Trace/Verbose
+- Debug
+- Information
+- Warning
+- Error
+- Critical/Fatal
+
+~Log(LogLevel.Information, "log this {data}", data);~
+//or
+~LogInformation("log this {data}", data);~
+//or
+~logger.LogError(...);~
+
+
+There are overloads with these parameters:
+EventId: struct - Id, Name
+Exception
+Message: formatted string -- allows {item}
+Args: Object[] - replacements for format items.
+
+
+*** Categories and Event Ids
+Allow for logical grouping to your logging
+
+When you declare a ILogger<T> this is logged as "SourceContext"
+
+EventId - Id and Name
+
+
+*** Scopes
+- Groups a set of logical operations
+- Shared content included in each log entry
+- Spans class/assembly boundaries
+- Starts wherever you like.
+
+~using( _logger.BeginScope("", data)){~
+
+
+* LoggerMessage methods
+- LoggerMessage.Define
+- LoggerMessage.DefineScope
+
+avoids "boxing"
+Templates only parsed once
+[[https://bit.ly/2VECpqd][LoggerMessage methods]]
+
+* Automating logging of standard events in ASP.NET Core
+Do not use developer exception page.  Its a crutch, and can express sensistive information.
+
+- Remove Developer exception page
+- Be aware of Exception.ToString()
+- Update the Error page
+  RequestId
+  IExceptionHandlerPathFeature
+- Define custom middleware for API
+
+
+*** Remove developer exception page:
+In the ~Startup.cs~ file remove the ~app.UseDeveloperExceptionPage()~ line.
+And the standard
+~app.UseExceptionHandler("/Error");~ should handle the other stuff.
+
+
+
+* Side Notes
+Look up ~Exception.Data~ property.  From docs.microsoft.com: Gets a collection of key/value pairs that provide additional user-defined information about the exception.
+
+Look up course by same guy "Serilog Enrichment: Getting Common Information into Log Entries"
