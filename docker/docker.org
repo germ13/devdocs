@@ -13,11 +13,31 @@ info about docker client and server
 -t flag is for terminal
 
 ** docker syntax
+
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0
 WORKDIR /src
 COPY . .
 ENTRYPOINT ["dotnet", "run"]
 
+FROM mcr.microsoft.com/dotnet/core/aspnet:3-0-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
+WORKDIR /src
+COPY [../TheProject.csproj", "../TheProject/"]
+RUN dotnet restore "../TheProject/TheProject.csproj"
+COPY . .
+WORKDIR "//src//../TheProject"
+RUN dotnet build "TheProject.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "TheProject.csproj" -c Release -o /app/publish
+
+FROM base as final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "TheProject.dll"]
 
 ** docker cli
 
@@ -25,4 +45,6 @@ ENTRYPOINT ["dotnet", "run"]
 
 
 ~docker run console101~
+
+** docker tooling in visual studio 
 

@@ -1,0 +1,2 @@
+* This is a sample index file
+This is some content for publish

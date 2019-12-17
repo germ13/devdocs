@@ -1,0 +1,42 @@
+* SQL Workshop I
+
+*** Introduction to SQL Workshop
+***** Lesson #1: Introduction to SQL Workshop
+Description: The Oracle Database: SQL Workshop I course offers students an introduction to the Oracle Database database technology. The students are also introduced to Oracle Database Exadata Express Cloud Service. In this class students learn the concepts of relational databases and the powerful SQL programming language. This course provides the essential SQL skills that allow developers to write queries against single and multiple tables, manipulate data in tables, and create database objects.
+
+Learn To:
+- Identify what a SQL statement is.
+- Understand the Oracle Relational Database.
+- Use SQL Developer.
+- Write reports using SQL Statements.
+- Manipulate data in relational tables and save the data.
+- Benefits to You
+- Students use Oracle SQL Developer as the main environment tool for writing SQL. SQL*Plus is introduced as an optional tool. Demonstrations and hands-on practice reinforce the fundamental concepts.
+
+*** Unit #1: Retrieve, Restrict, and Sort Data
+***** Lesson #2: Retrieving Data using SQL =SELECT=
+***** Lesson #3: Restricting and Sorting Data
+***** Lesson #4: Using Single-Row Functions to Customize Output
+***** Lesson #5: Using Conversion Functions and Conditional Expressions 
+*** Unit #2: Joins, Subqueries, and Set Operators
+***** #6: Reporting Aggregated Data Using Group Functions
+***** #7: Displaying Data from Multiple Tables Using Joins
+***** #8: Using Subqueries to Solve Queries
+***** #9: Using Set Operators
+*** Unit #3: DML and DDL
+***** #10: Managing Tables Using DML Statements
+***** #11: Introduction to Data Definition Language
+
+* SQL Workshop II
+
+* Certification Examp Preparation Seminar: Oracle Dtabase SQL
+
+* Oracle Database 12c: Analytic SQL for Data Warehousing
+
+* Oracle Database 12c: SQL and PL/SQL New Features
+
+* Oracle Database 12c: Introduction for Experienced SQL Users
+
+* Oracle Database 12c: Fundamentals for Developers and System Administrators
+
+* Oracle Database 12c: SQL Tuning for Developers

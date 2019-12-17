@@ -1,0 +1,33 @@
+#+OPTIONS: \n:t
+
+* Data Manipulation
+
+** (filter f coll)
+
+Example:
+=(filter :a '({:a 1} {:b 3} {:a 8} {:z 7}))=  
+~=> ({:a 1} {:a 8})~  
+
+** (keep f coll)
+
+Example:
+=(keep :a '({:a 1} {:b 3} {:a 8} {:z 7}))=
+~=> (1 8)~
+
+** (keep-indexed f coll)
+
+Example:
+=(keep-indexed :a '({:a 1} {:b 3} {:a 8} {:z 7}))=
+~=> ([0 1] [1 nil] [2 8] [3 nil])~
+
+** (map f coll)
+
+Example:
+=(map :a '({:a 1} {:b 3} {:a 8} {:z 7}))=
+~=> (1 nil 8 nil)~
+
+
+** (map-indexed f coll)
+Example:
+=(map-indexed :a '({:a 1} {:b 3} {:a 8} {:z 7}))=
+~=> ([0 1] [1 nil] [2 8] [3 nil])~
