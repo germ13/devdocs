@@ -12,7 +12,7 @@ Learn To:
 - Manipulate data in relational tables and save the data.
 - Benefits to You
 - Students use Oracle SQL Developer as the main environment tool for writing SQL. SQL*Plus is introduced as an optional tool. Demonstrations and hands-on practice reinforce the fundamental concepts.
-
+- Test for magit
 *** Unit #1: Retrieve, Restrict, and Sort Data
 ***** Lesson #2: Retrieving Data using SQL =SELECT=
 ***** Lesson #3: Restricting and Sorting Data
