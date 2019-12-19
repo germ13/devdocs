@@ -9,3 +9,12 @@ C-h v <variable> - Look at variable
 ** Execute
 
 C-x C-e - eval-last-sexp
+
+** Navigation
+- Page-up : =M-v=
+- Page-down: =C-v=
+
+
+* Org
+
+Set key globally for capture: =(global-set-key "\C-cc" 'org-capture)=

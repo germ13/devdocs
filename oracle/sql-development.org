@@ -40,3 +40,8 @@ Learn To:
 * Oracle Database 12c: Fundamentals for Developers and System Administrators
 
 * Oracle Database 12c: SQL Tuning for Developers
+* Exams
+- 1Z0-071 Oracle Database
+- 1Z0-144 Oracle Database 11g: Program with PL/SQL
+- 1Z0-148 Oracle Database: Advanced PL/SQL
+- 1Z0-750 Oracle Application Express 18: Developing Web Applications

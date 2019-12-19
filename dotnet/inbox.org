@@ -1,0 +1,102 @@
+* .NET Core
+** Authorization
+*** Definitions
+GetPolicyAsync
+This method returns authorization police for a provided name
+
+GetDefaultPolicyAsync
+This method returns the default authorization policy that used by "Authorize" attribute without specifying any policy.
+
+*** Extend from AuthorizeAttribute
+
+Set Policy name and value in setter
+
+*** Create a Authorization Requirement
+
+This is a collection of data that can be used to evaluate the user principal.
+One requirement may be associated with different handlers.
+
+Extends from IAuthorizationRequirement
+
+*** Create Authorization Handler
+
+This is the mechanism by to handle properties of the requirement.
+
+Extends from AuthorizationHanddler<T>, where T is an implementation of IAuthorizationRequirement
+
+Has to implement method:
+protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumTimeSpendRequirement requirement)  
+
+If it meets the requirement then line context.Succeed(requirement) is executed.
+
+At the end, regardless of the outcome we return an Task.FromResult(0).
+
+*** Custom Policy Provider
+
+** Logging
+
+*** Built in classes and interfaces
+- `ILogger`
+- `ILoggingFactory`
+- `LoggingFactory`
+- `ILoggingProvider`
+
+ILoggingProvider creates and ILogger object.
+ILoggingFactory creates and ILoggers using an ILoggingProvider
+
+*** Log Levels
+0 - Tracing : Tracing purpose messages.
+1 - Debug : Short term debugging purposes.
+2 - Information : Track the flow of the application
+3 - Warning : Abnormal program flow
+4 - Error : Errors and exceptions that can't be handled by your code.
+5 - Critical : Serious system failures or errors.
+
+** Middleware
+*** Creating middleware
+
+```
+public class MyMiddleWare {
+  private readonly RequestDelegate _next;
+
+  public MyMiddleware(RequestDelegate next){
+    _next = next ?? throw new ArgumentNullException(nameof(next));
+  }
+
+  public Task Invoke(HttpContext context){
+    //Do stuff
+    return _next(context);
+
+  }
+```
+
+On `Startup.cs` in `Configure` method add line:
+```
+app.Add(new MyMiddleware());
+```
+*** Creating Extension method for options
+public static class MyMiddlewareExtension{
+  public static IApplicationBuilder UseThis(this IApplicationBuilder app){
+    if(app == null)
+    {
+      throw new ArgumentNullException(nameof(app));
+    }
+
+    return app.UseMiddleware<MyMiddleWare>();
+  }
+
+  public static IApplicationBuilder UseThis(this IApplicationBuilder app, MyMiddlewareOptions options)
+  {
+    if(app == null)
+    { 
+      new ArgumentNullException(nameof(app));
+    }
+
+    if(options == null)
+    {
+       throw new ArgumentNullException(nameof(options));
+    }
+
+    return app.UseMiddleware<MyMiddleware>(Options.Create(options));
+  }
+}

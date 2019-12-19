@@ -1,0 +1,12 @@
+* Spark for .NET
+* 101
+General purpose distrubuted processing engine for analytics over large datasets
+- Spark SQL
+- Spark streaming
+- Machine Learning
+- Visualization
+
+Three components
+ - Driver : Spark Session and User's Programs
+ - Executors : Tasks
+ - Cluster Manager
