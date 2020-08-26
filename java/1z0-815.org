@@ -1,0 +1,50 @@
+=== 1z0-815 certification =
+* Packages
+From Oracle: "A package is a namespace that organizes a set of related classed and interfaces.  Coceptually you can think of packaes as being similar to different folders on your computer."
+
+** Rules
+A source file must have 0 or 1 statements at the beginning of the file (excluding white-space and comments) that states the name of the package:
+
+~package period.delimited.name;~
+
+A package can have multiple classes and interfaces.
+
+- Example of commands
+java -cp build dev.schemer.math.Computer
+
+- Whats the difference?
+(1)
+~javac -d build src\dev\schemer\math\Computer.java~
+cre
+vs 
+(2)
+~javac src\dev\schemer\math\Computer.java~
+
+
+(2) creates the ~.class~ file in the same directory as ~.java~ files.  As opposed to (1) that creates the file in the build folder with the package name as the directory structure.
+
+** Referencing
+
+#+begin_src java
+
+  //FQCN
+  java.util.ArrayList = new java.util.ArrayList()
+
+  // Single-type import
+  import java.util.ArrayList;
+  ArrayList aList = new ArrayList();
+
+  // On demand declaration (discouraged)
+  import java.util.*;
+
+  // Single static 
+  import static.java.lang.Math.PI;
+
+  // static import on demand
+  import static java.lang.Math.*;
+
+#+end_src
+
+
+hello
+
