@@ -1,0 +1,44 @@
+TODO
+================================================================================
+
+Khan Academy
+--------------------------------------------------------------------------------
+- [China](https://www.khanacademy.org/humanities/history/euro-hist/China-early-1900s/v/overview-of-chinese-history-1911-1949?utm_source=Sailthru&utm_medium=email&utm_campaign=Copy%20of%20Highlighted%20Content%20081615%20-%20no%20final%20button&utm_term=Stuff%20you%20might%20like%20After%20Test%20Cohort%20Made)
+
+
+Dev
+--------------------------------------------------------------------------------
+- [R](https://courses.edx.org/courses/course-v1:Microsoft+DAT204x+1T2016/)
+- [Introduction to Big Data With Sparks](https://courses.edx.org/courses/BerkeleyX/CS100.1x/1T2015/)
+- [Ionic](http://learn.ionicframework.com/)
+- [Pluralsight Camp](http://course.pluralsight.com/camp/trailblazer/)
+- [CodeAcademy](https://www.codecademy.com/learn)
+- [Computation Structures @ edX](https://www.codecademy.com/learn)
+
+
+Math
+--------------------------------------------------------------------------------
+- [Fun with list and sets](https://www.youtube.com/watch?v=alMiaIbxNV4&feature=em-uploademail)
+
+
+Psychology
+--------------------------------------------------------------------------------
+- [Science of Happiness](https://courses.edx.org/courses/course-v1:BerkeleyX+GG101x+3T2015/)
+
+
+Contests
+--------------------------------------------------------------------------------
+- [Windoes IOT](https://courses.edx.org/courses/BerkeleyX/CS100.1x/1T2015/)
+Deadline 2015.09.18
+- [Mexico Mobility Challenge](http://mexicocity-mobility.devpost.com/?utm_source=Devpost+Weekly+Newsletter&utm_campaign=dd896f6ba6-Hacker_08_13_15&utm_medium=email&utm_term=0_294421ffd0-dd896f6ba6-224899453)
+Deadline: 2015.11.03
+- [Inkathon](http://inkathon.devpost.com/?utm_source=Devpost+Weekly+Newsletter&utm_campaign=86a129219d-Hacker_08_20_15&utm_medium=email&utm_term=0_294421ffd0-86a129219d-224899453)
+Deadline: 2015.11.06
+- [Bluemixathon](http://bluemixathon.devpost.com/?utm_source=Devpost+Weekly+Newsletter&utm_campaign=86a129219d-Hacker_08_20_15&utm_medium=email&utm_term=0_294421ffd0-86a129219d-224899453)
+Deadline 2015.11.11  
+First Prize: 5000$
+
+
+MSDN
+--------------------------------------------------------------------------------
+- [DVLUP](https://rewards.msdn.microsoft.com/signin?returnUrl=%2F)
