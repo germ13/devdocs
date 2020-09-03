@@ -1,0 +1,25 @@
+* Schedule
+  Part 1: How to Build Applications with Cassandra
+** Week 1 : Getting Started with Cassandra
+** Week 2: Data Modeling for Apache Cassandra
+** Week 3: Application Developmnet, Backend Services and CRUD
+** Week 4: Application Development, Microservices and REST API
+  Part 2: Test Deploy and monitor your clusters and applications
+** Week 5: Operating your Cassandra clusters 
+** Week 6: Running Cassandra performance tests
+** Week 7: Testing your deployments and troubleshooting
+** Week 8: Deploying Cassandra with Kubernetes
+
+* Week 1
+** Bootstraping
+ - Resources
+   - Datastax Developers @youtube and @twitch
+   - Questions @ bit.ly/cassandra-workshop (youtube and discord)
+   - Quizz: menti.com (mentimeter)
+   - Runtime: astra.datastax.com 
+   - Materials: github.com/DataStax-Academy
+   - Coding: Starting Week 3
+** Apache Cassandra (Why, What & When)
+** Read and Write path
+** Uber High Level Data Modeling
+** What's NEXT?

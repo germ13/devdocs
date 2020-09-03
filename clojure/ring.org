@@ -1,0 +1,33 @@
+* Ring
+Ring is made up of handlers, middleware, adapters, request maps, response maps.
+** Handlers
+Core logic of web applications.
+Implemented as clj functions
+
+Synchronous handlers take 1 argument: a request map, and it returns a response map.
+
+Asynchronous handler takes 3 arguments: request map, a callback function for sending the response and a callback function for raising an exception.  The response callback takes a response map as its argument.  THe exception callbak takes an exception as its argument.
+
+A handler function may support both synchronous and asynchronous behavior by accepting both arities.
+
+** Middleware
+Ring middleware augments the functionality of handlers by invoking them in the process of generating responses.  Typically middleware will be implemented as a higher-order function that takes one or more handlers and configuration options as arguments and returns a new handler with the desired compound behaviour.
+
+** Adapters
+
+** Request Map
+A request map is a clojure map containing at least the following keys and corresponding values:
+
+=:server-port= (Required, String)
+The port on which the request is being handled.
+
+=:server-name= (required, string)
+The resolved server name, or the server IP address.
+
+=:remote-addr= (required, string)
+The IP address of the client or the last proxy that sent the request.
+
+=:uri= (required, string)
+The request URI, excluding the query string and the "=?=" separator.  Must start with "=/="
+
+=:query

@@ -1,0 +1,48 @@
+# Redux
+
+## Three Tenets of Redux
+
+### The Single Immutable State Three
+
+### State Change is Described via actions
+Action is the atom of change.
+
+Requirements: Type (usu. string type for serializability)
+
+### Reducer Function
+State mutations in the state need to be represented via pure factions.
+
+To describe a change we take the current state of the app, and and action that acts on a pure function reducer to give rise to the next state of the app.
+
+## Implementing Reducers
+- Undefined Action Returns `state`
+- If `state` is `undefined` returns what is seen as the default initial value
+
+## Store
+The store binds the three principles of redux together.
+
+```javascript
+const {createStore} = Redux;
+const store = createStore(counter);
+
+store.getState();
+store.dispatch({type: 'INCREMENT'});
+store.subscribe(()=>return 1);
+
+```
+- It holds the state.
+- Lets you dispatch actions.
+- When created you specify the reducer.
+
+### `getState`
+
+### `dispatch`
+
+### `subscribe`
+
+## Tests
+`expect` library:
+```javascript
+expect( function(arguments) {} )
+  .toEqual(value)
+```

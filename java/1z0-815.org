@@ -1,0 +1,192 @@
+webview-panel:webview-panel/webview-c91b33c9-ebba-4085-8adb-24a897b999561z0-815 certification
+
+* Part 1
+
+** Intro and Overview
+
+** Course Info
+
+** Java Classes, Main Methods, Executables Jars and More
+
+Tools expected to be known in exam:
+*** NOT JShell
+
+*** ~java~ launch java application
+
+--class-path, -classpath, -cp :: parameter is a semicolon separated list of directories, jar archives, and zip archives to search for class files.
+
+--verbose:class :: Displays information about each loaded claas.
+
+--verbose:gc :: displays information about each garbage collection event (GC)
+
+
+*** ~javac~ reads java class and interface defintions and complie them into bytecode class files.
+
+-d :: sets the destination directory
+
+-g :: generates all debugging information
+
+-g:[lines, vars, source] :: generates only the kind of debugging information specified by the comma-separated list of keywords.
+
+-g:none :: does not generate debugging information
+
+-verbose :: outputs messages about what the compiler is doing
+
+*** ~jar~ create an archive for the classes and resrourcees and to manipulate or restore individual classes or resources from an archive
+
+-c, --create :: Creates the archive
+
+-C :: Changes the specified directory and includes the files specified at the end of the command line
+
+-f, --file :: specifies the archive file name
+
+-m, --manifest :: includes the manifest information from the given manifest file
+
+*** ~javap~ Disassemble one or more class files
+
+-c :: prints disassembled cod, for example, the instructions that comprise the Java butecodes, for each of the methods in the class
+
+*** What does ~java MyCode.java~ do?
+If you dont have a class file and you do the following, the file will be run.  No class file is created and the file is _interpreted_: ran in place.
+If the class file exists then an error will occurr: ~error: class found on applicatgion class path: MyCode~
+
+*** Rules
+A public class must have the same name as the filename,
+Filename: MyCode.java 
+Code    : public class MyCode { ... }
+
+There must be one or zero public classes in a file.  If the class if public it must have the same name as the filename.
+
+If you want a class to be executable the JVM will look for a main method that is both public and static.  
+The method signature must also match.
+Return type is always void
+
+
+Correct signatures:
+
+#+begin_src java
+
+public static void main(String[] args) { /* ... */}
+
+public static void main(String... args) { /* ... */ }
+
+public static void main(String[] args) throws Exception { /* ... */ } 
+
+static public void main(String[] args)
+
+public final static void main(String[] args)
+
+public final strictfp static void main(String[] args)
+
+public final strictfp synchronized static void main(String[] args)
+
+public final static synchronized strictfp void main(String[] args)
+
+/*
+
+etc
+
+*/
+
+public static void main(String args[])
+
+public static void main(String...args) //no spaces
+
+public static void main(final String[] args) {}
+
+
+/* 
+parameter name be anything
+
+*/
+
+public static void main(String stuff[])
+
+public static void main(String[] vars)
+
+public static void main(String...thingies)
+
+/* Exceptions can be handled */ 
+
+public static void main(String[] args) throws Throwable{}
+
+public static void main(String...args) throws Error {}
+
+
+#+end_src
+
+
+
+** Package and Imports
+
+Packages
+From Oracle: "A package is a namespace that organizes a set of related classed and interfaces.  Conceptually you can think of packages as being similar to different folders on your computer."
+
+*** Rules
+    - A source file must have 0 or 1 statements
+    - Must be at the beginning of the file (excluding white-space and comments) that states the name of the package.
+    - Class file can only be associated with a single package
+    - A package can be associated with multiple classes and/or interfaces.
+
+ ~package period.delimited.name;~
+
+
+ - Example of commands
+ java -cp build dev.schemer.math.Computer
+
+ - Whats the difference?
+ (1)
+ ~javac -d build src\dev\schemer\math\Computer.java~
+ cre
+ vs 
+ (2)
+ ~javac src\dev\schemer\math\Computer.java~
+
+
+ (2) creates the ~.class~ file in the same directory as ~.java~ files.  As opposed to (1) that creates the file in the build folder with the package name as the directory structure.
+
+*** Referencing
+
+#+begin_src java
+
+  //FQCN
+  java.util.ArrayList = new java.util.ArrayList()
+
+  // Single-type import
+  import java.util.ArrayList;
+  ArrayList aList = new ArrayList();
+
+  // Type-import On demand declaration (discouraged)
+  import java.util.*;
+
+  // Single static import declaration
+  import static.java.lang.Math.PI;
+
+  // static import on demand declaration
+  import static java.lang.Math.*;
+
+#+end_src
+
+
+** Fully Qualified Class Names, Singly Type Import, and Type Import on Demand
+   To use a class in your code which resides in another package, even a parent package, you must use either a FQCN or a flavor of an import statement.
+   
+   The ~java.lang~ package does not have to be explicitly imported.  Or a class from that package does not have to be fully qualified.  For example ~String~ does not have to be references as ~java.lang.String~.
+
+*** Single-type-import declaration
+    ~import dev.schemer.Math;~
+
+*** Type-import-on-demand
+    ~import dev.schemer.*;~
+
+  Single-type-import declaration:
+  - Takes precedence of the import-on-deman declaration
+  - Prevents you from creating a class of the same name in source file
+
+*** What gets imported?
+    If one has ~import dev.*;~, one would not get the ~dev.schemer.Math~ class.  One would only get the classes defined at the ~import.dev~ level.
+
+
+
+
+
