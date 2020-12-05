@@ -1,0 +1,126 @@
+* Container Lifecyle
+docker run = docker create + docker start
+
+# command create a container:
+`docker create <image name>
+
+# command start a container:
+`docker start <container id>`
+
+example:
+`docker create hello-world`
+`docker run -a <id-from-above-command>`
+
+`-a` makes docker watch for output.  attach to container.
+
+# starting an exited container
+docker start -a <container-id>
+
+this will rerun the RUN command.  The RUN command cannot be replaced/altered.
+
+# remove exited container (et. al)
+`docker system prune`
+
+this does not remove the images, just the exited containers (et. al)
+
+# logs from a container
+`docker create busybox echo hi there`
+`docker start <conainter-id>`
+`docker logs <container-id>
+
+`docker logs` does not rerun the container, it just outputs the logs to screen
+
+# stopping a container
+docker stop <container-id> : sends a SIGTERM command.  if at 10 seconds process is not shut down then a SIGKILL command is sent.
+
+docker kill <container-id> : sends a SIGKILL command.  force stops the process.
+
+# executing extra commands inside running containers
+`docker run redis`
+`docker exec -it <container-id> redis-cli`
+
+-i : attaches input from our host terminal into the STDIN process in the container
+-t : pretty print and more
+
+# difference between 
+`docker exec` and `docker attach`
+
+# commands inside the container
+`docker exec -it <container-id> sh`
+`docker exec -it <container-id> bash`
+
+# running a command at startup
+`docker run -it <container-name> sh`
+
+# creating your own images
+
+Dockerfile -> Docker client -> Docker Server -> Usable Image
+
+Creating a Dockerfile
+1. Specify a base image
+2. Run some commands to install additional programs
+3. Specify a command to run on container startup
+
+# creating your own redis server
+
+## In Dockerfile
+
+FROM alpine
+RUN apk add --update redis
+CMD ["redis-server"]
+
+## Outside of docker file
+`docker build .`
+
+# tagging / naming your images
+
+`docker build -t <dockerhubusername>/<projectname>:<version> .` 
+
+# docker port mapping
+docker run -p 8080:8080 <image-id>
+
+# docker compose
+
+`docker run <my-image>` is the same as `docker-compose up`
+
+and
+
+`docker build .` `docker run <my-image>` is the same as `docker-compose up --build`
+
+--
+
+run in detached mode:
+`docker-compose up -d`
+
+to stop all the containers:
+`docker-compose down` 
+
+# docker restart policies
+
+"no" : never restart.  default policy.  use "no" (with quotes, because of yaml)
+
+always : restart for whatever reason.
+
+on-failure: restart only if exit code != 0
+
+unless-stopped: restart always, unless explicitly stopped by user/developer.
+
+# docker-compose ps
+when run in directory with docker-compose.yml file
+shows the status of all the container in the compose file
+
+# config needed to make docker-compose work with create-react-app
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    stdin_open: true
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
+    ports: 
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+
+
