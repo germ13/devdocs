@@ -46,4 +46,3 @@
 - https://aphyr.com/posts/353-rewriting-the-technical-interview
 - https://www.reddit.com/r/scheme/comments/83ty10/dan_friedman_parenthec_transform_scheme_programs/
 - https://cgi.sice.indiana.edu/~c311/lib/exe/fetch.php?media=parenthec.pdf
-- 
