@@ -46,3 +46,15 @@
 - https://aphyr.com/posts/353-rewriting-the-technical-interview
 - https://www.reddit.com/r/scheme/comments/83ty10/dan_friedman_parenthec_transform_scheme_programs/
 - https://cgi.sice.indiana.edu/~c311/lib/exe/fetch.php?media=parenthec.pdf
+- books
+    - _scheme and the art of programming_
+    - _essentials of programming languages_
+    - _coordinated computing_
+    - _the little schemer_
+    - _the seasoned schemer_
+    - _the reasoned schemer_
+    - _a little java, a few patterns_
+    - _the little mler_
+    - _the little prover_
+    - _the little typer_
+    - _the little learner_

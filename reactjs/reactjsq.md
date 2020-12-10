@@ -75,10 +75,10 @@ var El = React.createClass({
 
 ## Flux
 ### Flux concept
-view --(triggers)--> event
-event updates model
-model --(triggers)--> event
-view responds to models event by re-rendering latest data.
+- view --(triggers)--> event  
+- event updates model  
+- model --(triggers)--> event  
+- view responds to models event by re-rendering latest data.
 
 One way data flow / decoupled observer pattern is designed so that your source of truth always stays in your stores/models.
 
