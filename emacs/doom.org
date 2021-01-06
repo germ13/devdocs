@@ -1,6 +1,6 @@
 #+TITLE: Doom
 
-* Video 1
+* Video 1 - Introduction
 
 Doom uses evil mode
 
@@ -60,7 +60,7 @@ SPC p p - switch to project
 
 SPC SPC - select file within project
 
-SPC f p
+SPC f p - open config files
 
 SPC f r - recent files
 
