@@ -1,0 +1,41 @@
+* Redux
+
+** Store
+A store is an object that holds the applications state tree.  There should only be a single store in a Redux app, as the composition happens at the reducer level.
+- =getState()= : returns the current state of the store
+- =dispatch()= : this dispatches an action.  It is the only way to update the application state
+- =subscribe()= : subscribes a change listener to the state
+- =unsubscribe()= : useful when you no longer wan to call listener
+
+** Actions
+An action is a plain object that represents an intention to change the state
+- Payloads of information that send data from your application to your store
+- Any data, wheter from UI events or network callbacks, needs to be dispatches as an action eventually
+- Actions must have a type field which indicate the type of action being performed
+-sdf
+
+** Reducers
+They specify how the application's state changes in response to actions sent to the store
+
+Actions only describe what happened, but don't describe how the application's state changes
+
+A reducer is a function that accepts the current state an and action and returns the new state with the action performed
+
+=combinedReducers()= utility can be used to combine all the reducers in the app into a single index reducer.  This makes maintainability much easier
+
+* Process
+
+[ Action ] --(dispatch)--> [ Store ] --> [ Reducer ]
+
+                                    <--
+
+Action triggered by an Event
+
+Reducer handles it via EventHandler
+
+
+* Steps
+- Design the store
+- Define the actions
+- Create a reducer
+- Set up reducer

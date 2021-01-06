@@ -1,0 +1,145 @@
+#+TITLE: Doom
+
+* Video 1
+
+Doom uses evil mode
+
+Doom lives in ~/.emacs.d/
+
+Doom commands located @ .emacs.d/bin/doom
+
+./doom quickstart
+
+SPC F .
+
+- Custom configuration in folder .doom.d
+config.el
+  whenever this is modifies you should run
+  bin/doom refresh
+
+init.el
+  packages
+  run bin\doom sync after modyfing init.el
+
+packages.el
+  packages beyond those that doom comes out of the box with
+
+  once a package is added here you run the command:
+  bin/doom install
+
+** Doom commands
+doom quickstart
+doom refresh
+doom install
+doom doctor
+doom upgrade
+doom update
+
+* Video 2
+
+SPC . : OPEN FILES
+
+Blue commands executed right away
+
+Purple executed after
+
+** Projectile
+Tell projectile to index the projects.  It is smart as to how it does this, looks for key files: .git, mercurial, darcs, baazar, lein, maven, sbt, scons, rebar, bundler.
+If you want to create a project manually, just create an empty .projectile file in it
+
+Features:
+- jump to file in project
+- jump to files at point in project
+- jump to directory in project
+- jump to a file in a directory
+- ...etc
+
+M-x projectile-discover-in-directory
+
+SPC p p - switch to project
+
+SPC SPC - select file within project
+
+SPC f p
+
+SPC f r - recent files
+
+SPC f R - recent files in context of project
+
+
+* Video 3
+
+dired tutorial
+
+* Video 4 : Buffers, Windows, and Basic Navigation
+
+Buffer holds content
+Buffer can be related to a file
+
+SPC b b - show open buffers related to project
+SPC , - Same as SPC b b
+SPC b B - show all buffers
+SPC < - Same as SPC b B
+SPC b k - Kill current buffer
+SPC b N - new buffer
+SPC b s - Persist buffer to disk
+
+** Windows
+Section of your screen aka: panes
+
+C-w v - Split window vertically
+C-w w - loop through windows
+C-w [h|j|k|l] move through buffers like in vi
+
+C-w s - Split window horizontally
+
+C-w q - close windows
+
+C-w > - Increase window size
+C-w < - Decrease window size
+C-w + - Increase window size
+C-w - - Decrease window size
+C-w = - Set size w
+
+* Video 5 - Installing Packages
+
+- Recommended packages
+(package ob-typescript)
+(pacakge! indium)
+reason-mode
+prettier-js
+move-text
+vue-mode
+origami
+deadgrep
+sql-indent
+org-brain
+ascii-art-to-unicode
+wakatime-mode
+
+
+In `package.el`
+add the line
+(package! org-super-agenda)
+
+Then in `config.el`
+add
+(def-package! org-super-agenda
+:
+)
+
+In order to get help
+we type
+SPC h f <name-of-func>
+
+
+Commands to know
+(package! <package-name) ;; in package.el
+
+(use-package! ;; in config.el
+:init <...>
+:after <...>
+:config <...>)
+
+* Video 6
+Evil-Snipe mode
